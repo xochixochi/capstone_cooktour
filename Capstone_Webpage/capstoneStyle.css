@@ -2,10 +2,58 @@
 Light Green: 90df85
 Blue: 264b72
 Teal: 44848e
-Navy Blue: 0b1d2
+Navy Blue: 0b1d28
 */
 
 #logo {
     height: 200px;
-    float: right;
+}
+
+#full_logo{
+    text-align: center;
+}
+
+#logo_text{
+    font-size: 80px;
+    color: #44848e;
+}
+
+#header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.section-header {
+    margin-left: auto;
+    margin-right: auto;
+    border: #e9ecef 2px solid;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.section-header-text {
+    color: #0b1d28;
+    text-align: center;
+}
+
+.fact {
+    border: #e9ecef 2px solid;
+    margin: 2%;
+    border-radius: 8px;
+}
+
+.stat {
+    color: #90df85;
+    font-size: 50px;
+    text-align: center;
+    margin: 0px;
+}
+
+.descr {
+    color: #0b1d28;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
