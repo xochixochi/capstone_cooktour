@@ -1,7 +1,9 @@
-$(document).ready(function() {
-    /*$.get("/marketing").done(function(data) {
-        console.log(data);
-    })*/
+
+$.get("/marketing").done(function(data) {
+    console.log(data);
+});
+
+$(document).ready(() => {
 
     $('.all-metrics-top').hide();
 

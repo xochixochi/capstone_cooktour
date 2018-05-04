@@ -37,9 +37,38 @@
                         <span class="selected overview">overview</span>
                         <span class="all-metrics">all metrics</span>
                     </div>
-                    <div class="conversion-results-top container">
-                        <p class="results-header">predicted results</p>
-                        <div class-"container">
+                    <div class="conversion-results-top container row">
+                        <div class="col-4 container">
+                            <p class="results-header">algorithm input</p>
+                            <form action="/azure">
+                                <label for="aud">Target Audience</label>
+                                <select id="aud" class="form-control">
+                                  <option selected>Choose...</option>
+                                  <option>...</option>
+                                </select>
+
+                                <label for="ccat">Content Category</label>
+                                <select id="ccat" class="form-control">
+                                  <option selected>Choose...</option>
+                                  <option>...</option>
+                                </select>
+                                
+                                <label for="ctype">Content Type</label>
+                                <select id="ctype" class="form-control">
+                                  <option selected>Choose...</option>
+                                  <option>...</option>
+                                </select>
+
+                                <label for="cta">Call To Action</label>
+                                <select id="cta" class="form-control">
+                                  <option selected>Choose...</option>
+                                  <option>...</option>
+                                </select>
+                                
+                            </form>
+                        </div>
+                        <div class="col-8 container">
+                            <p class="results-header">predicted results</p>
                             <div class="row key-metrics">
                                 <div class="col-1"></div>
                                 <div class="col-2">
@@ -159,9 +188,9 @@
                     <div id="external-links">
                         <p>EXTERNAL LINKS</p>
                         <div class="container" id="options">
-                            <p>Airtable</p>
-                            <p>Facebook Ads Manager</p>
-                            <p>Power BI</p>
+                            <a href="/atb"><p>Airtable</p></a>
+                            <a href="/fam"><p>Facebook Ads Manager</p></a>
+                            <a href="/pbi"><p>Power BI</p></a>
                         </div>
                     </div>
                 </div>
