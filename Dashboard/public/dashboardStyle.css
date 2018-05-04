@@ -102,3 +102,23 @@ Navy Blue: 0b1d28
     border-top: 1px black solid;
     height: 160px;
 }
+
+.metric-selector {
+    text-align: center;
+    border: 1px black solid;
+    border-radius: 8px;
+    padding: 0px;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.filter {
+    padding: 5px;
+    padding-left: 15px;
+    text-align: left;
+    border-bottom: 1px black solid;
+}
+
+.form-check {
+    padding: 10px;
+}
