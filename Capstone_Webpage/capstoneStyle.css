@@ -69,3 +69,12 @@ Navy Blue: 0b1d28
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#dashboard-screenshot {
+    height: 800px;
+}
+
+.screenshot-container {
+    text-align: center;
+    padding: 20px;
+}
