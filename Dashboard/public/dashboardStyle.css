@@ -1,0 +1,46 @@
+/* Theme Colors 
+Light Green: 90df85
+Blue: 264b72
+Teal: 44848e
+Navy Blue: 0b1d28
+*/
+
+#logo {
+    height: 100px;
+}
+
+#logo-container {
+    text-align: center;
+}
+
+#logo-text {
+    color: #44848e;
+}
+
+#title {
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+#title > p {
+    margin-bottom: 0px;
+}
+
+.goal {
+    font-size: 40px;
+}
+
+#sidebar {
+    border-bottom: 1px black solid;
+    padding: 0px;
+}
+
+#options > p {
+    padding: 15px;
+    margin-bottom: 0px;
+}
+
+.selected {
+    background-color: #90df85;
+    border-radius: 8px;
+}
