@@ -19,10 +19,9 @@ Navy Blue: 0b1d28
 
 #title {
     margin-top: 50px;
-    margin-left: 10px;
 }
 
-#title > p {
+#title > p, #results-bar {
     margin-bottom: 0px;
 }
 
@@ -30,7 +29,8 @@ Navy Blue: 0b1d28
     font-size: 40px;
 }
 
-#sidebar {
+#sidebar, #external-links {
+    margin-top: 20px;
     border-bottom: 1px black solid;
     padding: 0px;
 }
@@ -43,4 +43,62 @@ Navy Blue: 0b1d28
 .selected {
     background-color: #90df85;
     border-radius: 8px;
+}
+
+#results-bar {
+    border-bottom: 1px black solid;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+#results-bar > span {
+    padding: 5px;
+}
+
+.results-header {
+    color: #90df85;
+    font-size: 28px;
+    margin: 15px;
+}
+
+.key-metrics {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.key-metrics > div {
+    font-size: 16px;
+}
+
+.metric {
+    color: #90df85;
+    font-size: 36px;
+}
+
+.charts-top {
+    border-top: 1px black solid;
+    height: 240px;
+}
+
+.conversion-compare {
+    border-top: 1px black solid;
+}
+
+.compare-row {
+    border-right: 1px black solid;
+    text-align: center;
+}
+
+.compare-row > p {
+    font-size: 16px;
+}
+
+.estimated > p{
+    margin-bottom: 54px;
+}
+
+.charts-bottom {
+    margin-top: 20px;
+    border-top: 1px black solid;
+    height: 160px;
 }
