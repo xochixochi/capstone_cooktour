@@ -1,6 +1,10 @@
 
-$.get("/marketing").done(function(data) {
-    console.log(data);
+$.get("/marketing").done( res => {
+    console.log(res.data)
+    res['data'].forEach( record => {
+        $("#ccat").append("<option value="+ record + ">" + record + "</option>");
+    });
+    
 });
 
 $(document).ready(() => {
