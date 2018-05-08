@@ -39,7 +39,8 @@ Navy Blue: 0b1d28
 
 .fact {
     border: #e9ecef 2px solid;
-    margin: 1%;
+    margin: 12px;
+    margin-top: 20px;
     border-radius: 8px;
 }
 
