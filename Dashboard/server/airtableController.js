@@ -5,21 +5,30 @@ let base = new Airtable({apiKey: cred.API_KEY}).base(cred.BASE_ID);
 
 module.exports = {
     getAdData : function(req, res) {
-        let ccat = [];
-        base('Capstone Ad Data (April 25)').select({"fields" : ["Content Category"]}).eachPage(
+        let categoryLabels = { "Content Type" : ["Video", "Post", "Article"]},
+            fields = ["Content Category", "Target Audience"],
+            allRecords = [];
+        base('Capstone Ad Data (April 25)').select({"fields" : fields}).eachPage(
             (records, getNextPage) => {
-                ccat = ccat.concat(records);
+                allRecords = allRecords.concat(records);
                 getNextPage();
             },
             (error) => {
-                ccatFinal = []
-                ccat.forEach((record) => {
-                    let category = record.fields["Content Category"]
-                    if (!ccatFinal.includes(category) && category) {
-                        ccatFinal.push(category);
-                    }
+                allRecords.forEach( record => {
+                    fields.forEach( field => {
+                        let category = record.fields[field]
+                        if (category) {
+                            if (!categoryLabels.hasOwnProperty(field)) {
+                                categoryLabels[field] = []
+                            } else {
+                                if (!categoryLabels[field].includes(category)) {
+                                    categoryLabels[field].push(category);
+                                }
+                            }
+                        }
+                    })
                 })
-                res.json({'data': ccatFinal});
+                res.json({'data': categoryLabels});
             }
         )
     },

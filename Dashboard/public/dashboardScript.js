@@ -1,10 +1,11 @@
 
 $.get("/marketing").done( res => {
     console.log(res.data)
-    res['data'].forEach( record => {
-        $("#ccat").append("<option value="+ record + ">" + record + "</option>");
-    });
-    
+    for (let category in res.data) {
+        res.data[category].forEach( label => {       
+            $("#" + category.split(' ').join('')).append("<option value="+ label + ">" + label + "</option>");
+        });
+    }   
 });
 
 $(document).ready(() => {
