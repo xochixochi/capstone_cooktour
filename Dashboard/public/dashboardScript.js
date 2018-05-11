@@ -2,8 +2,7 @@
 $.get("/marketing").done( res => {
     console.log(res.data)
     for (let category in res.data) {
-        res.data[category].forEach( label => {
-            console.log(label);       
+        res.data[category].forEach( label => {     
             $("#" + category.split(' ').join('')).append("<option value='"+ label + "'>" + label + "</option>");
         });
     }   
@@ -25,10 +24,16 @@ $(document).ready(() => {
         $('#results-bottom').show();
         $('.all-metrics-top').hide();
     });
-    ('#algo').submit( function() {
+    $('#algo').on("submit", function(e) {
+        e.preventDefault();  
         $.post('/predict', $('#algo').serialize(), function(data) {
+            predictedRow = JSON.parse(data);
+            predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
+            predictedValue = predictedRow.Results.output1.value.Values['0'][predictedValueIndex];
+            $('#estimate').append(predictedValue);
            },
            'json'
         );
+        return false;
     });
 })

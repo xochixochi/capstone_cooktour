@@ -10,7 +10,7 @@ module.exports = function(app) {
     app.get('/atb', (req, res) => { res.redirect(cred.ATB_LINK) });
     app.get('/fam', (req, res) => { res.redirect(cred.FAM_LINK) });
     app.get('/pbi', (req, res) => { res.redirect(cred.PBI_LINK) });
-    app.get('/marketing', db.getAdData);
+    app.get('/marketing', db.getCategoryLabels);
     app.post('/predict', ml.predict);
     app.all("*", (req, res, next) => {
         res.sendFile(path.resolve("./../public/dashboardIndex.html"))
