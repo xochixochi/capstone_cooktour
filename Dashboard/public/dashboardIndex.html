@@ -40,23 +40,23 @@
                     <div class="conversion-results-top container row">
                         <div class="col-4 container">
                             <p class="results-header">algorithm input</p>
-                            <form action="/azure">
+
+                            <form id="algo">
                                 <label for="TargetAudience">Target Audience</label>
-                                <select id="TargetAudience" class="form-control">
-                                </select>
+                                <select id="TargetAudience" name="TargetAudience" class="form-control"></select>
 
                                 <label for="ContentCategory">Content Category</label>
-                                <select id="ContentCategory" class="form-control">
-                                </select>
+                                <select id="ContentCategory" name="ContentCategory" class="form-control"></select>
                                 
                                 <label for="ContentType">Content Type</label>
-                                <select id="ContentType" class="form-control">
-                                </select>
+                                <select id="ContentType" name="ContentType" class="form-control"></select>
 
                                 <label for="CallToAction">Call To Action</label>
-                                <select id="CallToAction" class="form-control">
-                                </select>
+                                <select id="CallToAction" name="CallToAction" class="form-control"></select>
 
+                                <input id="Objective" name="Objective" type="hidden" value="Engagement">
+
+                                <input type="submit" value="sumbit">
                             </form>
                         </div>
                         <div class="col-8 container">

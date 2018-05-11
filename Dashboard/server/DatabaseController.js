@@ -1,11 +1,14 @@
 const Airtable = require('airtable')
 const cred = require('./config/config')
 
-let base = new Airtable({apiKey: cred.API_KEY}).base(cred.BASE_ID);
+let base = new Airtable({apiKey: cred.ATB_API_KEY}).base(cred.BASE_ID);
 
 module.exports = {
     getAdData : function(req, res) {
-        let categoryLabels = { "Content Type" : ["Video", "Post", "Article"]},
+        let categoryLabels = { 
+                "Content Type" : ["Video", "Post", "Article"],
+                "Call To Action" : ["Travel The World From Home"]
+            },
             fields = ["Content Category", "Target Audience"],
             allRecords = [];
         base('Capstone Ad Data (April 25)').select({"fields" : fields}).eachPage(

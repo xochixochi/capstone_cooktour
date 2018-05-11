@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const HOST = 8000
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './../public/')));
 
 var routes_setter = require('./config/routes.js');
