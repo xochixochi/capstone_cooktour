@@ -9,14 +9,6 @@ $.get("/marketing").done( res => {
     }   
 });
 
-('#algo').submit( function() {
-    $.post('/predict', $('#algo').serialize(), function(data) {
-        
-       },
-       'json'
-    );
-});
-
 $(document).ready(() => {
     $('.all-metrics-top').hide();
     $('.all-metrics').click(function(){
@@ -32,6 +24,11 @@ $(document).ready(() => {
         $('.conversion-results-top').show();
         $('#results-bottom').show();
         $('.all-metrics-top').hide();
-    })
-
+    });
+    ('#algo').submit( function() {
+        $.post('/predict', $('#algo').serialize(), function(data) {
+           },
+           'json'
+        );
+    });
 })
