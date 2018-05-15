@@ -4,7 +4,7 @@ const cred = require('./config/config')
 let base = new Airtable({apiKey: cred.ATB_API_KEY}).base(cred.BASE_ID);
 
 module.exports = {
-    getAdData : function(req, res) {
+    getCategoryLabels : function(req, res) {
         let categoryLabels = { 
                 "Content Type" : ["Video", "Post", "Article"],
                 "Call To Action" : ["Travel The World From Home"]
@@ -36,7 +36,7 @@ module.exports = {
         )
     },
 
-    getFormCat : function(req, res) {
+    getAdData : function(req, res) {
         base('User Research').select({}).firstPage((error, records) => {
             res.json({data: records})
         })
