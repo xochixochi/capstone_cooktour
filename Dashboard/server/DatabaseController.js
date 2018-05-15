@@ -41,4 +41,5 @@ module.exports = {
             res.json({data: records})
         })
     }
+    
 }
