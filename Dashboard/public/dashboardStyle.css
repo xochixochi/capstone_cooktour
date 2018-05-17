@@ -51,10 +51,6 @@ Navy Blue: 0b1d28
     padding-bottom: 5px;
 }
 
-#results-bar > span {
-    padding: 5px;
-}
-
 .results-header {
     color: #90df85;
     font-size: 28px;
@@ -121,4 +117,15 @@ Navy Blue: 0b1d28
 
 .form-check {
     padding: 10px;
+}
+
+#options > span {
+    padding: 5px;
+}
+
+.algorithm-submit {
+    margin: 10px;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
 }
