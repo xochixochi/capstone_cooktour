@@ -30,6 +30,7 @@ $(document).ready(() => {
             predictedRow = JSON.parse(data);
             predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
             predictedValue = predictedRow.Results.output1.value.Values['0'][predictedValueIndex];
+            $('#estimate').empty();
             $('#estimate').append(predictedValue);
            },
            'json'
