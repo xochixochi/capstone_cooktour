@@ -12,76 +12,89 @@
     <body>
         <div class="container">
             <div class="row">
-                <div id="logo-container" class="col-2">
+                <div id="logo-container" class="col-3">
                     <img id="logo" src="adticipatelogo.png" alt="adticipate logo" />
                     <p id="logo-text" >adticipate</p>
                 </div>
-                <div id="title" class="col-10">
+                <div id="title" class="col-9">
                     <p>CAMPAIGN GOAL</p>
-                    <p class="goal">conversion</p>
+                    <p class="goal"></p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-3">
                     <div id="sidebar">
-                        <p>CAMPAIGN GOAL</p>
-                        <div class="container" id="options">
-                            <p class="selected">conversion</p>
-                            <p>engagement</p>
-                            <p>traffic</p>
-                        </div>
+                        <p class="results-header">algorithm input</p>
+
+                        <form id="algo">
+                            <label for="TargetAudience">Target Audience</label>
+                            <select id="TargetAudience" name="TargetAudience" class="form-control"></select>
+
+                            <label for="ContentCategory">Content Category</label>
+                            <select id="ContentCategory" name="ContentCategory" class="form-control"></select>
+                            
+                            <label for="ContentType">Content Type</label>
+                            <select id="ContentType" name="ContentType" class="form-control"></select>
+
+                            <label for="CallToAction">Call To Action</label>
+                            <select id="CallToAction" name="CallToAction" class="form-control"></select>
+
+                            <input id="Objective" name="Objective" type="hidden" value="Engagement">
+
+                            <input class="algorithm-submit" type="submit" value="submit">
+                        </form>
                     </div>
                 </div>
-                <div class="col-10" id="results-top">
+                <div class="col-9" id="results-top">
                     <div id="results-bar">
-                        <span class="selected overview">overview</span>
-                        <span class="all-metrics">all metrics</span>
+                        <div class="container" id="options">
+                            <span class="traffic-select">1. traffic</span>
+                            <span class="engagement-select">2. engagement</span>
+                            <span class="conversion-select">3. conversion</span>
+                        </div>
                     </div>
                     <div class="conversion-results-top container row">
-                        <div class="col-4 container">
-                            <p class="results-header">algorithm input</p>
-
-                            <form id="algo">
-                                <label for="TargetAudience">Target Audience</label>
-                                <select id="TargetAudience" name="TargetAudience" class="form-control"></select>
-
-                                <label for="ContentCategory">Content Category</label>
-                                <select id="ContentCategory" name="ContentCategory" class="form-control"></select>
-                                
-                                <label for="ContentType">Content Type</label>
-                                <select id="ContentType" name="ContentType" class="form-control"></select>
-
-                                <label for="CallToAction">Call To Action</label>
-                                <select id="CallToAction" name="CallToAction" class="form-control"></select>
-
-                                <input id="Objective" name="Objective" type="hidden" value="Engagement">
-
-                                <input type="submit" value="submit">
-                            </form>
-                        </div>
-                        <div class="col-8 container">
+                        <div class="col-12 container">
                             <p class="results-header">predicted results</p>
                             <div class="row key-metrics">
                                 <div class="col-1"></div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     conversion rate
-                                    <p class="metric">2.5%</p>
+                                    <p class="metric conversion-rate">2.5%</p>
                                 </div>
-                                <div class="col-2">
-                                    cost per result
-                                    <p class="metric">$0.10</p>
+                                <div class="col-3">
+                                    number of conversions
+                                    <p class="metric num-conversions">$0.10</p>
                                 </div>
-                                <div class="col-2">
-                                    relevence score
-                                    <p class="metric">8/10</p>
+                                <div class="col-3">
+                                    cost per conversion
+                                    <p class="metric cost-per-conversion">8/10</p>
                                 </div>
-                                <div class="col-2">
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="charts-top col-10">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="traffic-results-top container row">
+                        <div class="col-12 container">
+                            <p class="results-header">predicted results</p>
+                            <div class="row key-metrics">
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    click through rate (CTR)
+                                    <p class="metric click-through-rate">2.5%</p>
+                                </div>
+                                <div class="col-3">
                                     link clicks
-                                    <p class="metric">120</p>
+                                    <p class="metric link-clicks">$0.10</p>
                                 </div>
-                                <div class="col-2">
-                                    relevance score
-                                    <p class="metric">8/10</p>
+                                <div class="col-3">
+                                    cost per click (cpc)
+                                    <p class="metric cost-per-click">8/10</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -93,90 +106,34 @@
                         </div>
                     </div>
 
-                    <div class="all-metrics-top container">
+                    <div class="engagement-results-top container row">
+                        <div class="col-12 container">
                             <p class="results-header">predicted results</p>
-                            <div class-"container">
-                                <div class="metric-selector">
-                                    <div class="filter">filter</div>
-                                    <div class="checkbox-row">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                            <label class="form-check-label" for="inlineCheckbox1">impressions</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">impressions</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                            <label class="form-check-label" for="inlineCheckbox3">impressions</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                                <label class="form-check-label" for="inlineCheckbox3">impressions</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                                <label class="form-check-label" for="inlineCheckbox3">impressions</label>
-                                        </div>                                                 
-                                    </div>
-
-                                    <div class="checkbox-row">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                <label class="form-check-label" for="inlineCheckbox1">impressions</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                <label class="form-check-label" for="inlineCheckbox2">impressions</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                                <label class="form-check-label" for="inlineCheckbox3">impressions</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                                    <label class="form-check-label" for="inlineCheckbox3">impressions</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                                    <label class="form-check-label" for="inlineCheckbox3">impressions</label>
-                                            </div>                                                 
-                                        </div>
+                            <div class="row key-metrics">
+                                <div class="col-1"></div>
+                                <div class="col-3">
+                                    page engagements
+                                    <p class="metric page-engagements">2.5%</p>
                                 </div>
-                                
-                                
-                                <div class="row key-metrics">
-                                    <div class="col-1"></div>
-                                    <div class="col-2">
-                                        conversion rate
-                                        <p class="metric">2.5%</p>
-                                    </div>
-                                    <div class="col-2">
-                                        cost per result
-                                        <p class="metric">$0.10</p>
-                                    </div>
-                                    <div class="col-2">
-                                        relevence score
-                                        <p class="metric">8/10</p>
-                                    </div>
-                                    <div class="col-2">
-                                        link clicks
-                                        <p class="metric">120</p>
-                                    </div>
-                                    <div class="col-2">
-                                        relevance score
-                                        <p class="metric">8/10</p>
-                                    </div>
+                                <div class="col-3">
+                                    post-engagements
+                                    <p class="metric post-engagements">$0.10</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="charts-top col-10">
+
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-2">
+                <div class="col-3">
                     <div id="external-links">
                         <p>EXTERNAL LINKS</p>
                         <div class="container" id="options">
@@ -186,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-10" id="results-bottom">
+                <div class="col-9" id="results-bottom">
                     <div class="container conversion-compare">
                         <p class="results-header">compare results</p>
                     </div>

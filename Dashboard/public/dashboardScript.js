@@ -9,21 +9,43 @@ $.get("/marketing").done( res => {
 });
 
 $(document).ready(() => {
-    $('.all-metrics-top').hide();
-    $('.all-metrics').click(function(){
+
+
+    $('.traffic-select').addClass('selected');
+    $('.goal').text("traffic");
+    $('.conversion-results-top').hide();
+    $('.engagement-results-top').hide();
+
+    $('.traffic-select').click(function(){
         $(this).addClass('selected');
-        $('.overview').removeClass('selected');
+        $('.engagement-select').removeClass('selected');
+        $('.conversion-select').removeClass('selected');
         $('.conversion-results-top').hide();
-        $('#results-bottom').hide();
-        $('.all-metrics-top').show();
+        $('.engagement-results-top').hide();
+        $('.traffic-results-top').show();
+        $('.goal').text("traffic");
     });
-    $('.overview').click(function(){
+
+    $('.engagement-select').click(function(){
         $(this).addClass('selected');
-        $('.all-metrics').removeClass('selected');
-        $('.conversion-results-top').show();
-        $('#results-bottom').show();
-        $('.all-metrics-top').hide();
+        $('.traffic-select').removeClass('selected');
+        $('.conversion-select').removeClass('selected');
+        $('.conversion-results-top').hide();
+        $('.traffic-results-top').hide();
+        $('.engagement-results-top').show();
+        $('.goal').text("engagement");
     });
+
+    $('.conversion-select').click(function(){
+        $(this).addClass('selected');
+        $('.traffic-select').removeClass('selected');
+        $('.engagement-select').removeClass('selected');
+        $('.conversion-results-top').show();
+        $('.traffic-results-top').hide();
+        $('.engagement-results-top').hide();
+        $('.goal').text("conversion");
+    });
+
     $('#algo').on("submit", function(e) {
         e.preventDefault();  
         $.post('/predict', $('#algo').serialize(), function(data) {
