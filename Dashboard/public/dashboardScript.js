@@ -1,4 +1,8 @@
 
+//Stores variables used to determine if additional input is needed.
+var postEngagements = 0;
+var linkClicks = 0;
+
 $.get("/marketing").done( res => {
     console.log(res.data)
     for (let category in res.data) {
@@ -15,6 +19,8 @@ $(document).ready(() => {
     $('.goal').text("traffic");
     $('.conversion-results-top').hide();
     $('.engagement-results-top').hide();
+    $('.engagement-inputs').hide();
+    $('.conversion-inputs').hide();
 
     $('.traffic-select').click(function(){
         $(this).addClass('selected');
@@ -23,6 +29,8 @@ $(document).ready(() => {
         $('.conversion-results-top').hide();
         $('.engagement-results-top').hide();
         $('.traffic-results-top').show();
+        $('.engagement-inputs').hide();
+        $('.conversion-inputs').hide();
         $('.goal').text("traffic");
     });
 
@@ -33,6 +41,13 @@ $(document).ready(() => {
         $('.conversion-results-top').hide();
         $('.traffic-results-top').hide();
         $('.engagement-results-top').show();
+        $('.engagement-inputs').show();
+        $('.conversion-inputs').hide();
+
+        //Auto loads previous post engagement value if exists and not zero
+        if(postEngagements %= 0) {
+            $('#PostEngagement').html(postEngagements);
+        }
         $('.goal').text("engagement");
     });
 
@@ -43,6 +58,13 @@ $(document).ready(() => {
         $('.conversion-results-top').show();
         $('.traffic-results-top').hide();
         $('.engagement-results-top').hide();
+        $('.engagement-inputs').hide();
+        $('.conversion-inputs').show();
+
+        //Auto-loads previous link clicks value if exists and not zero
+        if(linkClicks %= 0) {
+            $('#LinkClicks').html(linkClicks);
+        }
         $('.goal').text("conversion");
     });
 
