@@ -16,7 +16,7 @@ $(document).ready(() => {
     $('.goal').text("traffic");
     $('.conversion-results-top').hide();
     $('.engagement-results-top').hide();
-    $('.engagement-inputs').hide();
+    $('.traffic-inputs').hide();
     $('.conversion-inputs').hide();
 
     $('.traffic-select').click(function(){
@@ -26,7 +26,7 @@ $(document).ready(() => {
         $('.conversion-results-top').hide();
         $('.engagement-results-top').hide();
         $('.traffic-results-top').show();
-        $('.engagement-inputs').hide();
+        $('.traffic-inputs').show();
         $('.conversion-inputs').hide();
         $('.goal').text("traffic");
     });
@@ -38,7 +38,7 @@ $(document).ready(() => {
         $('.conversion-results-top').hide();
         $('.traffic-results-top').hide();
         $('.engagement-results-top').show();
-        $('.engagement-inputs').show();
+        $('.traffic-inputs').hide();
         $('.conversion-inputs').hide();
 
         //Auto loads previous post engagement value if exists and not zero
@@ -55,7 +55,7 @@ $(document).ready(() => {
         $('.conversion-results-top').show();
         $('.traffic-results-top').hide();
         $('.engagement-results-top').hide();
-        $('.engagement-inputs').hide();
+        $('.traffic-inputs').hide();
         $('.conversion-inputs').show();
 
         //Auto-loads previous link clicks value if exists and not zero
@@ -65,13 +65,20 @@ $(document).ready(() => {
         $('.goal').text("conversion");
     });
 
+    //Should handle all functionality when a user clicks submit. Three cases should be for each campaign goal and then make calls
+    //For each metric
     $('#algo').on("submit", function(e) {
-        e.preventDefault();  
+        e.preventDefault();
+        
+        //Post call for handling a unique submit press
         $.post('/predict', $('#algo').serialize(), function(data) {
             predictedRow = JSON.parse(data);
             predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
             predictedValue = predictedRow.Results.output1.value.Values['0'][predictedValueIndex];
             $('#estimate').empty();
+            
+            //Add a conditional handler to determine which of the different outputs to handle, will prob need a unique funtion for 
+            //each campaign goal and then handle within that individually.
             $('#estimate').append(predictedValue);
            },
            'json'
