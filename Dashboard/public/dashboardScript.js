@@ -4,7 +4,6 @@ var postEngagements = 0;
 var linkClicks = 0;
 
 $.get("/marketing").done( res => {
-    console.log(res.data)
     for (let category in res.data) {
         res.data[category].forEach( label => {     
             $("#" + category.split(' ').join('')).append("<option value='"+ label + "'>" + label + "</option>");
@@ -13,8 +12,6 @@ $.get("/marketing").done( res => {
 });
 
 $(document).ready(() => {
-
-
     $('.traffic-select').addClass('selected');
     $('.goal').text("traffic");
     $('.conversion-results-top').hide();
