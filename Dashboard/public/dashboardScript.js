@@ -12,24 +12,12 @@ $.get("/marketing").done( res => {
 });
 
 $(document).ready(() => {
-    $('.traffic-select').addClass('selected');
-    $('.goal').text("traffic");
+    $('.engagement-select').addClass('selected');
+    $('.goal').text("engagement");
     $('.conversion-results-top').hide();
     $('.engagement-results-top').hide();
     $('.traffic-inputs').hide();
     $('.conversion-inputs').hide();
-
-    $('.traffic-select').click(function(){
-        $(this).addClass('selected');
-        $('.engagement-select').removeClass('selected');
-        $('.conversion-select').removeClass('selected');
-        $('.conversion-results-top').hide();
-        $('.engagement-results-top').hide();
-        $('.traffic-results-top').show();
-        $('.traffic-inputs').show();
-        $('.conversion-inputs').hide();
-        $('.goal').text("traffic");
-    });
 
     $('.engagement-select').click(function(){
         $(this).addClass('selected');
@@ -45,7 +33,21 @@ $(document).ready(() => {
         if(postEngagements %= 0) {
             $('#PostEngagement').html(postEngagements);
         }
+        $('#Objective').attr('value', 'Engagement')
         $('.goal').text("engagement");
+    });
+
+    $('.traffic-select').click(function(){
+        $(this).addClass('selected');
+        $('.engagement-select').removeClass('selected');
+        $('.conversion-select').removeClass('selected');
+        $('.conversion-results-top').hide();
+        $('.engagement-results-top').hide();
+        $('.traffic-results-top').show();
+        $('.traffic-inputs').show();
+        $('.conversion-inputs').hide();
+        $('#Objective').attr('value', 'Traffic');
+        $('.goal').text("traffic");
     });
 
     $('.conversion-select').click(function(){
@@ -55,13 +57,14 @@ $(document).ready(() => {
         $('.conversion-results-top').show();
         $('.traffic-results-top').hide();
         $('.engagement-results-top').hide();
-        $('.traffic-inputs').hide();
+        $('.traffic-inputs').show();
         $('.conversion-inputs').show();
 
         //Auto-loads previous link clicks value if exists and not zero
         if(linkClicks %= 0) {
             $('#LinkClicks').html(linkClicks);
         }
+        $('#Objective').attr('value', 'Conversion');
         $('.goal').text("conversion");
     });
 
@@ -72,17 +75,35 @@ $(document).ready(() => {
         
         //Post call for handling a unique submit press
         $.post('/predict', $('#algo').serialize(), function(data) {
-            predictedRow = JSON.parse(data);
-            predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
-            predictedValue = predictedRow.Results.output1.value.Values['0'][predictedValueIndex];
-            $('#estimate').empty();
+            console.log(data)
+            // predictedRow = JSON.parse(data);
+            // predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
+            // predictedValue = predictedRow.Results.output1.value.Values['0'][predictedValueIndex];
+            // $('#estimate').empty();
             
-            //Add a conditional handler to determine which of the different outputs to handle, will prob need a unique funtion for 
-            //each campaign goal and then handle within that individually.
-            $('#estimate').append(predictedValue);
+            // //Add a conditional handler to determine which of the different outputs to handle, will prob need a unique funtion for 
+            // //each campaign goal and then handle within that individually.
+            // $('#estimate').append(predictedValue);
            },
            'json'
         );
         return false;
     });
-})
+});
+
+metricMap = {
+    "Engagement" : [
+        "post-engagement",
+        "page-engagements",
+    ],
+    "Traffic" : [
+        "click-through-rate",
+        "link-clicks",
+        "cost-per-click",
+    ],
+    "Conversion" : [
+        "conversion-rate",
+        "num-conversions",
+        "cost-per-conversion"
+    ]
+}
