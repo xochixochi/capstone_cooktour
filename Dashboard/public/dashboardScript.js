@@ -84,6 +84,13 @@ $(document).ready(() => {
             //$('cost-per-converions')
             $('.page-engagements').html(Math.round(data.PageEngagement * 100) / 100);
             $('.post-engagements').html(Math.round(data.PostEngagement * 100) / 100);
+            $('.click-through-rate').html(Math.round(data.ClickThroughRate * 100) / 100);
+            $('.link-clicks').html(Math.round(data.LinkClicks * 100) / 100);
+            $('.cost-per-click').html(Math.round(data.CostPerClick * 100) / 100);
+            //$('.conversion-rate').html(Math.round(data.ConversionRate * 100) / 100);
+            $('.num-conversions').html(Math.round(data.ConversionNumber * 100) / 100);
+            $('.cost-per-conversion').html(Math.round(data.CostPerConverions * 100) / 100);
+
 
             // predictedRow = JSON.parse(data);
             // predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
