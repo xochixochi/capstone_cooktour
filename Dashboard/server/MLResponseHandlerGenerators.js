@@ -48,7 +48,7 @@ handleOrdinaryMetricPrediction = (metric, metricCount, finalizeResults) => {
         addPredictionToResults(metric, predictedValue, results);
         //If all Predictions have returned results send them back to the client side
         if (Object.keys(results).length == metricCount) {
-            finalizeResults(results);
+            finalizeResults(results, formInputs);
         }
     }
 }

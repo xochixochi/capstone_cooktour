@@ -6,7 +6,8 @@ module.exports = {
     generateResultFinalizationFunction : (res) => {
         return (results, formInputs) => {
             //add derived data to results
-            // results["CostPerClick"] = results["PageEngagement"];
+            results["CostPerClick"] = results["LinkClicks"] / formInputs.AmountSpent;
+            results["CostPerConversion"] = results["ConversionNumber"] / formInputs.AmountSpent;
             res.json(results);
         }
     },
@@ -30,16 +31,6 @@ module.exports = {
                     let predictedValue = getPredictedValue(prediction);     
                     resHandlers[cs][m](predictedValue, formInputs, results);
                 } else {
-                    console.log(JSON.parse(ml_res.body).error.details[0].message);
-                    console.log(requestBody.Inputs.input1.ColumnNames);
-                    console.log(requestBody.Inputs.input1.Values);
-                    console.log(prediction);
-                    console.log(JSON.parse(ml_res.body));
-                    // for (key in ml_res.statusMessage) {
-                    //     console.log(key)
-                    // }
-                    console.log(cs);
-                    console.log(m);
                     res.json({"message": "failure"});
                 }
             });
@@ -49,9 +40,6 @@ module.exports = {
 
 getPredictedValue = (prediction) => {
     parsedPrediction = JSON.parse(prediction);
-    // console.log("predicted values")
-    // console.log(parsedPrediction['Results']['output1']['value']['ColumnNames']);
-    // console.log(parsedPrediction.Results.output1.value.Values['0']);
     let predictedValueIndex = parsedPrediction['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
     let predictedValue = parsedPrediction.Results.output1.value.Values['0'][predictedValueIndex];
     return predictedValue;
