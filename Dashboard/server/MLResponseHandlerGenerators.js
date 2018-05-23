@@ -6,24 +6,17 @@ module.exports = {
         let metricCount = getMetricCount(metricMap);
         for(stage in metricMap) {
             handlers[stage] = {}
-            for (metric in metricMap[stage]) {
-                handlers[stage][metric] = handleOrdinaryMetricPrediction(metric)
+            for (metric of metricMap[stage]) {
+                handlers[stage][metric] = handleOrdinaryMetricPrediction(metric, metricCount, finalizeResults);
             }
         }
         switch(initialStage) {
             case "Engagement":
-                handlers[initialStage]["PageEngagement"] = (prediction, formInputs, results) => {
-                    addPredictionToResults(metric, prediction["Scored Label Mean"], results)
-                }
-                //Add page engamgent to form inputs and results
-                //Now create and send all requests for the traffic stage
-                handlers["Traffic"]["LinkClicks"] = (metri)
-                //Add link clicks to form inputs and results
-                //now create and send all requests for the conversion stage
+                handlers["Engagement"]["PostEngagement"] = handleSpecialMetricPrediction("PostEngagement", handlers, "Traffic");
+                handlers["Traffic"]["LinkClicks"] = handleSpecialMetricPrediction("LinkClicks", handlers, "Conversion");
                 break;
             case "Traffic":
-                break;
-            case "Conversion":
+                handlers["Traffic"]["LinkClicks"] = handleSpecialMetricPrediction("LinkClicks", handlers, "Conversion");
                 break;
         }
         return handlers;
@@ -40,11 +33,21 @@ getMetricCount = (metricMap) => {
     return count;
 }
 
+handleSpecialMetricPrediction = (metric, handlers, nextStageToPredict) => {
+    return (predictedValue, formInputs, results) => {
+        addPredictionToResults(metric, predictedValue, results)
+        formInputs[metric] = Math.round(predictedValue);
+        console.log("form inputs now")
+        console.log(formInputs);
+        reqGen.makePredictionRequestsForStage(nextStageToPredict, handlers, formInputs, results);
+    } 
+}
+
 handleOrdinaryMetricPrediction = (metric, metricCount, finalizeResults) => {
-    return (prediction, formInputs, results) => {
-        addPredictionToResults(metric, prediction["Scored Label Mean"], results);
+    return (predictedValue, formInputs, results) => {
+        addPredictionToResults(metric, predictedValue, results);
         //If all Predictions have returned results send them back to the client side
-        if (results.length == metricCount) {
+        if (Object.keys(results).length == metricCount) {
             finalizeResults(results);
         }
     }
@@ -53,4 +56,3 @@ handleOrdinaryMetricPrediction = (metric, metricCount, finalizeResults) => {
 addPredictionToResults = (metric, value, results) => {
     results[metric] = value;
 }
-
