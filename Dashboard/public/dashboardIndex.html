@@ -26,6 +26,8 @@
                     <div id="sidebar">
                         <p class="results-header">algorithm input</p>
 
+                        <div class="loader"></div>
+
                         <form id="algo">
                             <label for="TargetAudience">Target Audience</label>
                             <select id="TargetAudience" name="TargetAudience" class="form-control"></select>
@@ -39,17 +41,17 @@
                             <label for="CallToAction">Call To Action</label>
                             <select id="CallToAction" name="CallToAction" class="form-control"></select>
 
-                            <label for="AmountSpent">Amount Spent</label>
-                            <input type="money" class="form-control" id="AmountSpent" placeholder="Enter budget in $">
+                            <label for="AmountSpent">Amount Spent ($)</label>
+                            <input type="number" min="1" max="50" step=".5" class="form-control" id="AmountSpent" placeholder="Enter budget in $">
 
                             <span class="traffic-inputs">
                                 <label for="PostEngagement">Post Engagement</label>
-                                <input type="engagement" class="form-control" id="PostEngagement" placeholder="Enter Previous Post Engagement">
+                                <input type="number" min="0" max="2000" step="1" class="form-control" id="PostEngagement" placeholder="Enter Previous Post Engagement">
                             </span>
 
                             <span class="conversion-inputs">
                                 <label for="LinkClicks">Link Clicks</label>
-                                <input type="conversions" class="form-control" id="LinkClicks" placeholder="Enter Previous Link Clicks">
+                                <input type="number" min="0" max="400" step="1" class="form-control" id="LinkClicks" placeholder="Enter Previous Link Clicks">
                             </span>
 
                             <input id="Objective" name="Objective" type="hidden" value="Engagement">
@@ -58,6 +60,7 @@
                         </form>
                     </div>
                 </div>
+                
                 <div class="col-9" id="results-top">
                     <div id="results-bar">
                         <div class="container" id="options">

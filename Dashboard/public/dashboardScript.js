@@ -18,6 +18,7 @@ $(document).ready(() => {
     $('.engagement-results-top').hide();
     $('.traffic-inputs').hide();
     $('.conversion-inputs').hide();
+    $('.loader').hide();
 
     $('.engagement-select').click(function(){
         $(this).addClass('selected');
@@ -72,6 +73,8 @@ $(document).ready(() => {
     //For each metric
     $('#algo').on("submit", function(e) {
         e.preventDefault();
+        $('.loader').show();
+        $('#algo').hide();
         
         //Post call for handling a unique submit press
         $.post('/predict', $('#algo').serialize(), function(data) {
@@ -87,6 +90,8 @@ $(document).ready(() => {
            },
            'json'
         );
+        $('.loader').hide();
+        $('#algo').show();
         return false;
     });
 });
