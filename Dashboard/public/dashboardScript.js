@@ -79,6 +79,12 @@ $(document).ready(() => {
         //Post call for handling a unique submit press
         $.post('/predict', $('#algo').serialize(), function(data) {
             console.log(data)
+            //$('.conversion-rate').text(data.conversionNumber);
+            //$('.num-conversions').text(data.)
+            //$('cost-per-converions')
+            $('.page-engagements').html(Math.round(data.PageEngagement * 100) / 100);
+            $('.post-engagements').html(Math.round(data.PostEngagement * 100) / 100);
+
             // predictedRow = JSON.parse(data);
             // predictedValueIndex = predictedRow['Results']['output1']['value']['ColumnNames'].indexOf('Scored Label Mean');
             // predictedValue = predictedRow.Results.output1.value.Values['0'][predictedValueIndex];

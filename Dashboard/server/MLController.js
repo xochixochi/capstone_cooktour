@@ -5,6 +5,7 @@ let predictInProgress = false;
 
 module.exports = {
     predict : (req, res) => {
+        console.log(req.body);
         let initialStage = req.body.Objective
         ////May need to handle double form submission??
         // if (predictInProgress) {
