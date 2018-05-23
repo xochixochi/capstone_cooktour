@@ -15,7 +15,7 @@ $(document).ready(() => {
     $('.engagement-select').addClass('selected');
     $('.goal').text("engagement");
     $('.conversion-results-top').hide();
-    $('.engagement-results-top').hide();
+    $('.traffic-results-top').hide();
     $('.traffic-inputs').hide();
     $('.conversion-inputs').hide();
     $('.loader').hide();
