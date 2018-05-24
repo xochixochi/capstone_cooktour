@@ -14,20 +14,20 @@ module.exports = {
         // }
         let finalizeResponse = reqGen.generateResultFinalizationFunction(res);
         let results = {},
-            predictionHandlers = handGen.createMetricPredictionHandlers(initialStage, mm.metricMap, finalizeResponse);
+            resCallbacks= handGen.createMLResponseCallbacks(initialStage, mm.metricMap, finalizeResponse);
 
         switch(initialStage) {
             case "Engagement":
-                reqGen.makePredictionRequestsForStage(initialStage, predictionHandlers, req.body, results);
+                reqGen.predictMetricsForStage("Engagement", resCallbacks, req.body, results);
                 break;
             case "Traffic":
-                reqGen.makePredictionRequestsForStage(initialStage, predictionHandlers, req.body, results);
-                reqGen.makePredictionRequestsForStage("Engagement", predictionHandlers, req.body, results);
+                reqGen.predictMetricsForStage("Traffic", resCallbacks, req.body, results);
+                reqGen.predictMetricsForStage("Engagement", resCallbacks, req.body, results);
                 break;
             case "Conversion":
-                reqGen.makePredictionRequestsForStage(initialStage, predictionHandlers, req.body, results);
-                reqGen.makePredictionRequestsForStage("Traffic", predictionHandlers, req.body, results);
-                reqGen.makePredictionRequestsForStage("Engagement", predictionHandlers, req.body, results);
+                reqGen.predictMetricsForStage("Conversion", resCallbacks, req.body, results);
+                reqGen.predictMetricsForStage("Traffic", resCallbacks, req.body, results);
+                reqGen.predictMetricsForStage("Engagement", resCallbacks, req.body, results);
                 break;
         }
     }

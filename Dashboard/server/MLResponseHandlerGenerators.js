@@ -1,7 +1,7 @@
 const reqGen = require('./MLRequestGenerators');
 
 module.exports = {
-    createMetricPredictionHandlers : (initialStage, metricMap, finalizeResults) => {
+    createMLResponseCallbacks : (initialStage, metricMap, finalizeResults) => {
         let handlers = {}
         let metricCount = getMetricCount(metricMap);
         for(stage in metricMap) {
@@ -35,11 +35,9 @@ getMetricCount = (metricMap) => {
 
 handleSpecialMetricPrediction = (metric, handlers, nextStageToPredict) => {
     return (predictedValue, formInputs, results) => {
-        addPredictionToResults(metric, predictedValue, results)
+        addPredictionToResults(metric, predictedValue, results);
         formInputs[metric] = Math.round(predictedValue);
-        console.log("form inputs now")
-        console.log(formInputs);
-        reqGen.makePredictionRequestsForStage(nextStageToPredict, handlers, formInputs, results);
+        reqGen.predictMetricsForStage(nextStageToPredict, handlers, formInputs, results);
     } 
 }
 
