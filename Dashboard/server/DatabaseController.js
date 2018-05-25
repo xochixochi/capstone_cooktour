@@ -17,7 +17,6 @@ module.exports = {
                 getNextPage();
             },
             (error) => {
-                console.log(error)
                 allRecords.forEach( record => {
                     fields.forEach( field => {
                         let category = record.fields[field]

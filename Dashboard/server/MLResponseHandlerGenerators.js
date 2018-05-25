@@ -1,12 +1,20 @@
+const mm = require('./config/metricMap');
 const reqGen = require('./MLRequestGenerators');
 
+let addPredictionToResults = (metric, value, results) => {
+    results[metric] = value;
+}
+let resultsFinishedLoading = (totalPredictions, results) => Object.keys(results).length == totalPredictions
+
 module.exports = {
-    createMLResponseCallbacks : (initialStage, metricMap, finalizeResults) => {
+    addPredictionToResults : addPredictionToResults,
+    resultsFinishedLoading : resultsFinishedLoading,
+    createMLResponseCallbacks : (initialStage, finalizeResults) => {
         let handlers = {}
-        let metricCount = getMetricCount(metricMap);
-        for(stage in metricMap) {
+        let metricCount = mm.getMetricCount();
+        for(let stage of mm.getCampaignStages()) {
             handlers[stage] = {}
-            for (metric of metricMap[stage]) {
+            for (let metric of mm.getMetrics(stage)) {
                 handlers[stage][metric] = handleOrdinaryMetricPrediction(metric, metricCount, finalizeResults);
             }
         }
@@ -20,37 +28,36 @@ module.exports = {
                 break;
         }
         return handlers;
+    },
+    makeNewResults : () => {return {}},
+}
+let predictMetricsForStage = (campaignStage, resHandlers, formInputs, results) => {
+    for (let metric of mm.getMetrics(campaignStage)) {
+        let callback = (predictedValue) => {
+                resHandlers[campaignStage][metric](predictedValue, formInputs, results);
+            }
+        reqGen.sendMLPredictionRequest(
+            reqGen.createPredictionRequestBody(campaignStage, formInputs),
+            mm.getURI(campaignStage, metric),
+            mm.getAPI_KEY(campaignStage, metric),
+            callback
+        );
     }
 }
-
-getMetricCount = (metricMap) => {
-    let count = 0;
-    for (stage in metricMap) {
-        for (metric in metricMap[stage]) {
-            count += 1;
-        }
-    }
-    return count;
-}
-
-handleSpecialMetricPrediction = (metric, handlers, nextStageToPredict) => {
+let handleSpecialMetricPrediction = (metric, handlers, nextStageToPredict) => {
     return (predictedValue, formInputs, results) => {
         addPredictionToResults(metric, predictedValue, results);
         formInputs[metric] = Math.round(predictedValue);
-        reqGen.predictMetricsForStage(nextStageToPredict, handlers, formInputs, results);
+        predictMetricsForStage(nextStageToPredict, handlers, formInputs, results);
     } 
 }
 
-handleOrdinaryMetricPrediction = (metric, metricCount, finalizeResults) => {
+let handleOrdinaryMetricPrediction = (metric, metricCount, finalizeResults) => {
     return (predictedValue, formInputs, results) => {
         addPredictionToResults(metric, predictedValue, results);
         //If all Predictions have returned results send them back to the client side
-        if (Object.keys(results).length == metricCount) {
+        if (resultsFinishedLoading(metricCount, results)) {
             finalizeResults(results, formInputs);
         }
     }
-}
-
-addPredictionToResults = (metric, value, results) => {
-    results[metric] = value;
 }
