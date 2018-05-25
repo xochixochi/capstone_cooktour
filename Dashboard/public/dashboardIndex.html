@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="dashboardStyle.css">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script type="text/javascript" src="dashboardScript.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
@@ -138,7 +139,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-1"></div>
-                                <div class="charts-top col-10">
+                                <div id="plot"class="charts-top col-10">
 
                                 </div>
                             </div>
@@ -164,7 +165,7 @@
                         <p class="results-header">compare results</p>
                     </div>
                     <div class="row">
-                        <div class="compare-row col-6 estimated">
+                        <div class="compare-row col-9 estimated">
                             <p>estimated</p>
                             <div class="row">
                                 <div id="estimate" class="col-1"></div>
@@ -173,16 +174,18 @@
                                 </div>
                              </div>
                         </div>
-                        <div class="compare-row col-6 past">
+                        <div class="compare-row col-3 past">
                             <p>past</p>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Choose Category:
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Street Food</a>
-                                    <a class="dropdown-item" href="#">Ingredients</a>
-                                    <a class="dropdown-item" href="#">Culture</a>
+                                    <a class="dropdown-item cat" data-cat="TargetAudience" href="javascript:void(0)">Target Audience</a>
+                                    <a class="dropdown-item cat" data-cat="ContentCategory" href="javascript:void(0)">Content Category</a>
+                                    <a class="dropdown-item cat" data-cat="ContentType" href="javascript:void(0)">Content Type</a>
+                                    <a class="dropdown-item cat" data-cat="CallToAction" href="javascript:void(0)">Call To Action</a>
+                                    <a class="dropdown-item cat" data-cat="AmountSpent" href="javascript:void(0)">Amount Spent</a>
                                 </div>
                             </div>
                             <div class="row">

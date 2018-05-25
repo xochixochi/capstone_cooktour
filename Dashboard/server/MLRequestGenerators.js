@@ -22,7 +22,6 @@ module.exports = {
         }
         request(options, (err, ml_res, prediction) => {
             if (!err && ml_res.statusCode == 200) {   
-                console.log("predicting this shit")
                 let predictedValue = retrievePredictedValue(prediction);   
                 callback(predictedValue);
             } else {

@@ -31,11 +31,12 @@ module.exports = {
             column = req.body.column,
             categories = req.body.categories, //eventually might want to pull categories from airtable for now just pull them from the client side.
             inputs = req.body.inputs,
-            results = reqGen.makeNewResults();
+            campaignStage = inputs.Objective,
+            results = resGen.makeNewResults();
         
         //make call to endpoint associated with metric for each category varying the column value of inputs with the category name
         for (let category of categories) {
-            inputs[metric] = category;
+            inputs[column] = category;
             let callback = (predictedValue) => {
                     resGen.addPredictionToResults(category, predictedValue, results);
                     if (resGen.resultsFinishedLoading(categories.length, results)) {
@@ -56,7 +57,6 @@ let predictMetricsForStage = (campaignStage, resHandlers, formInputs, results) =
         let callback = (predictedValue) => {
                 resHandlers[campaignStage][metric](predictedValue, formInputs, results);
             }
-        console.log("predicting for metric " + campaignStage + metric)
         reqGen.sendMLPredictionRequest(
             reqGen.createPredictionRequestBody(campaignStage, formInputs),
             mm.getURI(campaignStage, metric),

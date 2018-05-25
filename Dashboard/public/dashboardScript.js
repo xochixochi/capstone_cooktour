@@ -68,7 +68,44 @@ $(document).ready(() => {
         $('#Objective').attr('value', 'Conversion');
         $('.goal').text("conversion");
     });
-
+    $('.cat').on("click",function(){
+        let column  = $(this).data("cat");
+        let categories = [];
+        if (isContinuous(column)) {
+            for (let i = 0; i <= 50; i+= 5) {
+                categories.push(i);
+            }
+        }
+        $('#' + column + " option").each(function() {
+            categories.push($(this).val());
+        });
+        rawInputs = $('#algo').serializeArray();
+        let inputs = {};
+        for (let input of rawInputs) {
+            inputs[input.name] = input.value;
+        }
+        reqBody = {
+            metric : "PageEngagement",
+            column : column,
+            categories : categories,
+            inputs : inputs,
+        };
+        $.post('/catPredict', reqBody, function(data) {
+            let x = Object.keys(data);
+            let y = [];
+            for (let key of x) {
+                y.push(data[key]);
+            }
+            let plotData = [{x: x, y: y, type: 'bar'}];
+            let layout = {
+                autosize: false,
+                width: 700,
+                height: 250,
+            }
+            Plotly.newPlot('plot', plotData, layout);
+        })
+        
+    })
     //Should handle all functionality when a user clicks submit. Three cases should be for each campaign goal and then make calls
     //For each metric
     $('#algo').on("submit", function(e) {
@@ -108,6 +145,10 @@ $(document).ready(() => {
         return false;
     });
 });
+
+let isContinuous = (column) => {
+    return column == "AmountSpent" || column == "LinkClicks" || column == "PostEngagement"
+}
 
 metricMap = {
     "Engagement" : [
