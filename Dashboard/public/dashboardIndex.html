@@ -169,9 +169,9 @@
                         <div class="compare-row col-6 past">
                             <p>past</p>
                             <div class="dropdown">
-                            <label for="ContentType">Content Type</label>
-                            <select id="ContentType" name="ContentType" class="form-control">
-                                <option value="TargetAudience">Target Audience<</option>
+                            <label for="cat">Choose Category to Predict Across</label>
+                            <select id="cat" name="cat" class="form-control">
+                                <option value="TargetAudience">Target Audience</option>
                                 <option value="ContentCategory">Content Category</option>
                                 <option value="ContentType">Content Type</option>
                                 <option value="CallToAction">Call To Action</option>
@@ -187,9 +187,10 @@
                         </div>
                         <div class="compare-row col-6">
                                 <p>past</p>
-                                <select id="ContentType" name="ContentType" class="form-control">
+                                <label for="metric">Choose Metric</label>
+                                <select id="metric" name="metric" class="form-control">
                                 </select>
-                                <input class="algorithm-submit" type="submit" value="submit">
+                                <input id="catSubmit" class="algorithm-submit" type="submit" value="submit">
                         </div>
                     
                     </div>

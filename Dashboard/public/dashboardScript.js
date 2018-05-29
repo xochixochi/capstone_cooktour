@@ -69,8 +69,9 @@ $(document).ready(() => {
         $('.goal').text("conversion");
     });
     $('.cat').on("click",function(){
-        let column  = $(this).data("cat");
+        let column  = $("#").data("cat");
         let categories = [];
+        let 
         if (isContinuous(column)) {
             for (let i = 0; i <= 50; i+= 5) {
                 categories.push(i);
