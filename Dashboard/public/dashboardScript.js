@@ -101,7 +101,7 @@ $(document).ready(() => {
             let layout = {
                 autosize: false,
                 width: 700,
-                height: 250,
+                height: 300,
             }
             Plotly.newPlot('plot', plotData, layout);
         })
