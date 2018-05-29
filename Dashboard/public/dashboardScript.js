@@ -11,6 +11,20 @@ $.get("/marketing").done( res => {
     }   
 });
 
+var engagementOptions = {"page engagement": "PageEngagement",
+  "post engagement": "PostEngagement"
+};
+
+var trafficOptions = {"click through rate (ctr)": "ClickThroughRate",
+    "link clicks": "LinkClicks",
+    "cost per click": "CostPerClick"
+};
+
+var conversionOptions = {"conversion rate": "ConversionRate",
+"number of conversions": "ConversionNumber",
+"cost per conversion": "CostPerConversion"
+};
+
 $(document).ready(() => {
     $('.engagement-select').addClass('selected');
     $('.goal').text("engagement");
@@ -19,6 +33,7 @@ $(document).ready(() => {
     $('.traffic-inputs').hide();
     $('.conversion-inputs').hide();
     $('.loader').hide();
+    changeOptions(engagementOptions);
 
     $('.engagement-select').click(function(){
         $(this).addClass('selected');
@@ -36,6 +51,8 @@ $(document).ready(() => {
         }
         $('#Objective').attr('value', 'Engagement')
         $('.goal').text("engagement");
+
+        changeOptions(engagementOptions);
     });
 
     $('.traffic-select').click(function(){
@@ -49,6 +66,8 @@ $(document).ready(() => {
         $('.conversion-inputs').hide();
         $('#Objective').attr('value', 'Traffic');
         $('.goal').text("traffic");
+
+        changeOptions(trafficOptions);
     });
 
     $('.conversion-select').click(function(){
@@ -67,6 +86,8 @@ $(document).ready(() => {
         }
         $('#Objective').attr('value', 'Conversion');
         $('.goal').text("conversion");
+
+        changeOptions(conversionOptions);
     });
     $('.cat').on("click",function(){
         let column  = $("#").data("cat");
@@ -168,16 +189,11 @@ metricMap = {
     ]
 }
 
-var engagementOptions = {"page engagement": "page-engagement",
-  "post engagement": "post-engagement"
-};
-
-var trafficOptions = {"click through rate (ctr)": "ctr",
-    "link clicks": "link-clicks",
-    "cost per click": "cpc"
-}
-
-var conversionOptions = {"conversion rate": "conversion-rate",
-"number of conversions": "num-conversions",
-"cost per conversion": "cost-per-conversion"
+function changeOptions(options) {
+    var $sel = $("#metric");
+    $sel.empty(); // remove old options
+    $.each(options, function(key,value) {
+    $sel.append($("<option></option>")
+        .attr("value", value).text(key));
+    });
 }
