@@ -166,3 +166,17 @@ metricMap = {
         "cost-per-conversion"
     ]
 }
+
+var engagementOptions = {"page engagement": "page-engagement",
+  "post engagement": "post-engagement"
+};
+
+var trafficOptions = {"click through rate (ctr)": "ctr",
+    "link clicks": "link-clicks",
+    "cost per click": "cpc"
+}
+
+var conversionOptions = {"conversion rate": "conversion-rate",
+"number of conversions": "num-conversions",
+"cost per conversion": "cost-per-conversion"
+}
