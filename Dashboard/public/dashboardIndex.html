@@ -162,21 +162,20 @@
                 </div>
                 <div class="col-9" id="results-bottom">
                     <div class="container conversion-compare">
-                        <p class="results-header">compare results</p>
+                        <p class="results-header">Compare Predictions</p>
                     </div>
                     <div class="row">
+                    
                         <div class="compare-row col-6 past">
                             <p>past</p>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Choose Category:
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item cat" data-cat="TargetAudience" href="javascript:void(0)">Target Audience</a>
-                                    <a class="dropdown-item cat" data-cat="ContentCategory" href="javascript:void(0)">Content Category</a>
-                                    <a class="dropdown-item cat" data-cat="ContentType" href="javascript:void(0)">Content Type</a>
-                                    <a class="dropdown-item cat" data-cat="CallToAction" href="javascript:void(0)">Call To Action</a>
-                                </div>
+                            <label for="ContentType">Content Type</label>
+                            <select id="ContentType" name="ContentType" class="form-control">
+                                <option value="TargetAudience">Target Audience<</option>
+                                <option value="ContentCategory">Content Category</option>
+                                <option value="ContentType">Content Type</option>
+                                <option value="CallToAction">Call To Action</option>
+                            </select>
                             </div>
                             <div class="row">
                                     <div class="col-1"></div>
@@ -184,7 +183,15 @@
     
                                     </div>
                             </div>
+
                         </div>
+                        <div class="compare-row col-6">
+                                <p>past</p>
+                                <select id="ContentType" name="ContentType" class="form-control">
+                                </select>
+                                <input class="algorithm-submit" type="submit" value="submit">
+                        </div>
+                    
                     </div>
                 </div>
             </div>
