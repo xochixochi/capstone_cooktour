@@ -32,14 +32,14 @@ module.exports = {
             categories = req.body.categories, //eventually might want to pull categories from airtable for now just pull them from the client side.
             inputs = req.body.inputs,
             campaignStage = inputs.Objective,
-            results = resGen.makeNewResults();
+            results1 = resGen.makeNewResults();
         
         //make call to endpoint associated with metric for each category varying the column value of inputs with the category name
         for (let category of categories) {
             inputs[column] = category;
             let callback = (predictedValue) => {
                     resGen.addPredictionToResults(category, predictedValue, results);
-                    if (resGen.resultsFinishedLoading(categories.length, results)) {
+                    if (resGen.resultsFinishedLoading(categories.length * 2, results)) {
                         res.json(results);
                     }
                 }
@@ -49,6 +49,14 @@ module.exports = {
                 mm.getAPI_KEY(campaignStage, metric),
                 callback
             );
+            inputs["AmountSpent"] = inputs["AmountSpent"] + 10;
+            reqGen.sendMLPredictionRequest(
+                reqGen.createPredictionRequestBody(inputs.Objective, inputs),
+                mm.getURI(campaignStage, metric),
+                mm.getAPI_KEY(campaignStage, metric),
+                callback
+            );
+            inputs["AmountSpent"] = inputs["AmountSpent"] - 10;
         }
     },
 }
