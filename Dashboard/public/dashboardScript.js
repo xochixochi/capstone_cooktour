@@ -68,10 +68,11 @@ $(document).ready(() => {
         $('#Objective').attr('value', 'Conversion');
         $('.goal').text("conversion");
     });
-    $('.cat').on("click",function(){
-        let column  = $("#").data("cat");
+    $('#catSubmit').on("click",function(){
+        let column = $("#cat").val();
+        let metric = $("#metric").val();
         let categories = [];
-        let 
+
         if (isContinuous(column)) {
             for (let i = 0; i <= 50; i+= 5) {
                 categories.push(i);
@@ -86,7 +87,7 @@ $(document).ready(() => {
             inputs[input.name] = input.value;
         }
         reqBody = {
-            metric : "PageEngagement",
+            metric : metric,
             column : column,
             categories : categories,
             inputs : inputs,
