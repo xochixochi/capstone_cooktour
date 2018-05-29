@@ -5,6 +5,10 @@ Teal: 44848e
 Navy Blue: 0b1d28
 */
 
+#results-top {
+    height: 660px;
+}
+
 #logo {
     height: 100px;
 }
