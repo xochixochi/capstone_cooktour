@@ -114,18 +114,24 @@ $(document).ready(() => {
             inputs : inputs,
         };
         $.post('/catPredict', reqBody, function(data) {
-            let x = Object.keys(data);
-            let y = [];
-            for (let key of x) {
-                y.push(data[key]);
+            let x1 = Object.keys(data[0]);
+            let y1 = [];
+            let x2 = Object.keys(data[1]);
+            let y2 = [];
+            for (let key of x1) {
+                y1.push(data[0][key]);
             }
-            let plotData = [{x: x, y: y, type: 'bar'}];
+            for (let key of x2) {
+                y2.push(data[1][key]);
+            }
+            let plotData1 = {x: x1, y: y1, name: "base", type: 'bar'};
+            let plotData2 = {x: x2, y: y2, name: "base + 5", type: 'bar'};
             let layout = {
                 autosize: false,
                 width: 700,
                 height: 300,
             }
-            Plotly.newPlot('plot', plotData, layout);
+            Plotly.newPlot( inputs.Objective + 'plot', [plotData1, plotData2], layout);
         })
         
     })

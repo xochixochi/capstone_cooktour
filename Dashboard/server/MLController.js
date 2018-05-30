@@ -33,30 +33,40 @@ module.exports = {
             inputs = req.body.inputs,
             campaignStage = inputs.Objective,
             results1 = resGen.makeNewResults();
+            results2 = resGen.makeNewResults();
         
+        console.log(inputs)
         //make call to endpoint associated with metric for each category varying the column value of inputs with the category name
         for (let category of categories) {
             inputs[column] = category;
-            let callback = (predictedValue) => {
-                    resGen.addPredictionToResults(category, predictedValue, results);
-                    if (resGen.resultsFinishedLoading(categories.length * 2, results)) {
-                        res.json(results);
+            let callback1 = (predictedValue) => {
+                    resGen.addPredictionToResults(category, predictedValue, results1);  
+                    if (resGen.resultsFinishedLoading(categories.length, results1) && resGen.resultsFinishedLoading(categories.length, results2)) {
+                        res.json([results1, results2]);
                     }
                 }
+            let callback2 = (predictedValue) => {
+                resGen.addPredictionToResults(category, predictedValue, results2);
+                if (resGen.resultsFinishedLoading(categories.length, results1) && resGen.resultsFinishedLoading(categories.length, results2)) {
+                    res.json([results1, results2]);
+                }
+            }
             reqGen.sendMLPredictionRequest(
                 reqGen.createPredictionRequestBody(inputs.Objective, inputs),
                 mm.getURI(campaignStage, metric),
                 mm.getAPI_KEY(campaignStage, metric),
-                callback
+                callback1
             );
-            inputs["AmountSpent"] = inputs["AmountSpent"] + 10;
+            inputs["AmountSpent"] = Number(inputs["AmountSpent"]) + 5;
+            let body = reqGen.createPredictionRequestBody(inputs.Objective, inputs)
+            console.log(body.Inputs.input1.Values)
             reqGen.sendMLPredictionRequest(
-                reqGen.createPredictionRequestBody(inputs.Objective, inputs),
+                body,
                 mm.getURI(campaignStage, metric),
                 mm.getAPI_KEY(campaignStage, metric),
-                callback
+                callback2
             );
-            inputs["AmountSpent"] = inputs["AmountSpent"] - 10;
+            inputs["AmountSpent"] = Number(inputs["AmountSpent"]) - 5;
         }
     },
 }
