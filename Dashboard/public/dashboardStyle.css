@@ -99,7 +99,6 @@ Navy Blue: 0b1d28
 
 .charts-bottom {
     margin-top: 20px;
-    border-top: 1px black solid;
     height: 160px;
 }
 
@@ -153,4 +152,8 @@ Navy Blue: 0b1d28
 
 #sidebar {
     height: 660px;
+}
+
+#Conversionplot {
+    border-top: none;
 }
