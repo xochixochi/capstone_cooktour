@@ -124,12 +124,12 @@ $(document).ready(() => {
             for (let key of x2) {
                 y2.push(data[1][key]);
             }
-            let plotData1 = {x: x1, y: y1, name: "base", type: 'bar'};
-            let plotData2 = {x: x2, y: y2, name: "base + 5", type: 'bar'};
+            let plotData1 = {x: x1, y: y1, name: "Base Amount Spent", type: 'bar'};
+            let plotData2 = {x: x2, y: y2, name: "Base amount spent plus 5$", type: 'bar'};
             let layout = {
                 autosize: false,
                 width: 700,
-                height: 300,
+                height: 400,
             }
             Plotly.newPlot( inputs.Objective + 'plot', [plotData1, plotData2], layout);
         })
